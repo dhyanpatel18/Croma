@@ -1,7 +1,3 @@
-Below is a **clean, professional, visitor-facing `README.md`** for your GitHub repository.
-It contains **no development clutter**, no internal instructions — only polished content suitable for companies, recruiters, and project reviewers.
-
-Copy this EXACT content into `README.md` at the root of your GitHub repo.
 
 ---
 
