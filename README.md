@@ -174,9 +174,6 @@ Returns paginated products with filtering options.
 
 Converts textual rating formats like `"4.2 (11)"` into numeric `4.2`.
 
-### `diag_ratings.py`
-
-Debug utility to inspect rating column values.
 
 ### `create_indexes.py`
 
