@@ -39,4 +39,7 @@ led_tvs.db
 croma_products_normalized.db.bak
 
 # CSV exports (optional - uncomment if you don't want to commit large CSVs)
-*.csv
+croma.csv
+croma_products_normalized.csv
+croma_products_normalized.db
+croma_products_normalized.db.bak
