@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+env/
+.env
+
+# Node
+node_modules/
+dist/
+.build/
+
+# Databases (do not commit production DBs)
+*.db
+*.sqlite
+*.sqlite3
+*.db.bak
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# NPM logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Project-specific large files
+croma_products_normalized.db
+led_tvs.db
+croma_products_normalized.db.bak
+
+# CSV exports (optional - uncomment if you don't want to commit large CSVs)
+*.csv
