@@ -87,7 +87,6 @@ export default function App() {
           title="Featured TVs"
           apiFetch={(limit = 12) => fetch(`${API_BASE}/products?page=1&page_size=${limit}&sort_by=rank`).then(r => r.json())}
           onItemClick={(p) => {
-            // set search to product name and load
             setQuery(p.name || "");
             setPage(1);
           }}
