@@ -184,6 +184,7 @@ Adds helpful indexes to the database for faster queries.
 6. Show API output in Swagger docs
 
 ---
+## **Snippets of Frontend**
 <img width="1580" height="876" alt="image" src="https://github.com/user-attachments/assets/aa4fe3c5-1790-49e8-90c9-2fe490a679af" />
 <img width="1566" height="744" alt="image" src="https://github.com/user-attachments/assets/34aca575-f4bb-4a10-9031-35bae8e6d94f" />
 
