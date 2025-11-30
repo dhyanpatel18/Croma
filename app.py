@@ -71,17 +71,11 @@ def get_table_columns(conn, table_name="products"):
     return set([r[1] for r in rows])  # column name at index 1
 
 def build_where_clauses(params: Dict[str, Any], available_cols: set):
-    """
-    Build SQL WHERE clause and parameters, only using columns that exist in the DB.
-    params keys (possible): q, min_price, max_price, panel, is_smart_tv, is_4k, brand,
-    min_rating, max_rating, min_screen, max_screen, hdmi_min, usb_min, warranty_min, in_stock
-    """
     clauses = []
     args = []
 
     q = params.get("q")
     if q:
-        # Use name and product_url if present
         sub = []
         q_like = f"%{q}%"
         if "name" in available_cols:
@@ -140,10 +134,6 @@ def build_where_clauses(params: Dict[str, Any], available_cols: set):
         clauses.append("hdmi_ports >= ?"); args.append(params["hdmi_min"])
     if "usb_ports" in available_cols and params.get("usb_min") is not None:
         clauses.append("usb_ports >= ?"); args.append(params["usb_min"])
-
-    # Warranty months minimum
-    if "warranty_months" in available_cols and params.get("warranty_min") is not None:
-        clauses.append("warranty_months >= ?"); args.append(params["warranty_min"])
 
     # In stock / availability (if column exists)
     if "in_stock" in available_cols and params.get("in_stock") is not None:
@@ -247,8 +237,6 @@ def row_to_product(row):
     p["panel_led"] = as_bool(getc("panel_led"))
     p["panel_qled"] = as_bool(getc("panel_qled"))
     p["panel_oled"] = as_bool(getc("panel_oled"))
-
-    # image alias (normalize spaced column)
     p["plp_product_tile_src"] = (
         getc("plp_product_tile src") or getc("plp_product_tile_src") or getc("plp_product_tile")
     )
@@ -257,7 +245,6 @@ def row_to_product(row):
     p["rating"] = parse_rating()
     p["rating_text_raw"] = getc("rating-text") or getc("rating_text") or None
 
-    # other fields
     p["discount"] = getc("discount")
     p["delivery_pincode_text"] = getc("delivery-pincode-text") or getc("delivery_pincode_text")
     p["brand"] = getc("brand")
@@ -412,6 +399,7 @@ def stats(brand: Optional[str] = Query(None)):
         return {"count": count, "avg_price": avg_price, "top_by_rating": top_by_rating}
     finally:
         conn.close()
+      
 @app.get("/image-proxy")
 async def image_proxy(url: str):
     if not url:
@@ -426,7 +414,6 @@ async def image_proxy(url: str):
     if not u.startswith("http://") and not u.startswith("https://"):
         u = "https://" + u
 
-    # quick sanitization for broken '?tr=' double question marks
     if '?' in u:
         parts = u.split('?', 1)
         tail = parts[1].replace('?tr=', '&tr=')
