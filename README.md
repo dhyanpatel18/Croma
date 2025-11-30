@@ -24,7 +24,7 @@ This project demonstrates:
 
   * pagination
   * sorting (`price`, `rank`, `rating`, `name`)
-  * filters (4K, Smart TV, LED/QLED/OLED panel, price range, rating range, brand, etc.)
+  * filters (4K, LED/QLED/OLED panel, price range, rating range, brand, etc.)
 * Clean JSON responses with normalized fields
 * SQLite database support
 * Automatic API documentation at `/docs`
@@ -39,7 +39,6 @@ This project demonstrates:
   * price
   * rating (numeric)
   * panel badges
-  * smart/4K badges
   * "View" button (opens product on Croma)
 * Elegant dark UI inspired by modern e-commerce layouts
 
@@ -62,7 +61,6 @@ This project demonstrates:
 │   ├── src/styles/
 │   └── package.json
 ├── fix_ratings.py                 # Script to normalize rating column
-├── diag_ratings.py                # Script to inspect rating values
 ├── create_indexes.py              # (Optional) DB performance tuning
 ├── sample_products.csv            # (Recommended) small demo dataset
 └── README.md
@@ -137,7 +135,6 @@ Returns paginated products with filtering options.
 | -------------------------- | ---------------------------- |
 | `q`                        | Full-text search             |
 | `min_price`, `max_price`   | Price range                  |
-| `is_smart_tv`              | true / false                 |
 | `is_4k`                    | true / false                 |
 | `panel`                    | led / qled / oled            |
 | `brand`                    | Filter by brand              |
@@ -148,7 +145,7 @@ Returns paginated products with filtering options.
 **Example:**
 
 ```
-/products?is_smart_tv=true&panel=qled&min_rating=4
+/products?is_4k-true&panel=qled&min_rating=4
 ```
 
 ---
@@ -182,7 +179,7 @@ Adds helpful indexes to the database for faster queries.
 1. Launch Backend
 2. Launch Frontend
 3. Open UI → Browse list & carousel
-4. Apply filters (Smart TV, 4K, rating, panel type)
+4. Apply filters (4K, rating, panel type)
 5. Click **View** to open product on Croma
 6. Show API output in Swagger docs
 
