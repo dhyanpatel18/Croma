@@ -74,7 +74,68 @@ This project demonstrates:
 
 ### **1. Backend Setup (FastAPI)**
 
-**Create & activate virtual environment**
+🔧 Environment Setup (.env Configuration)
+
+The project supports environment-based configuration.
+Users can create a .env file to override database paths, API URLs, or other settings without modifying code.
+
+
+Create a file named:
+
+.env
+
+
+in the project root (same folder as app.py), and add:
+
+# Path to SQLite database
+DATABASE_URL=croma_products_normalized.db
+
+# Backend server host & port
+HOST=0.0.0.0
+PORT=8000
+
+How it works
+
+DATABASE_URL is read by app.py using os.getenv().
+
+If not provided, it defaults to croma_products_normalized.db.
+
+You can point it to any other custom DB file.
+
+Example:
+
+DATABASE_URL=sample_products.db
+
+2. Frontend .env Setup (React + Vite)
+
+Inside croma_ui/ create a file:
+
+.env
+
+
+Add the following:
+
+VITE_API_BASE_URL=http://127.0.0.1:8000
+
+How it works
+
+Vite exposes all env vars starting with VITE_.
+
+In the frontend, you read it using:
+
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
+
+
+This allows:
+
+Running backend on any port
+
+Switching between local server / deployed backend
+
+Easy environment portability
+
+Example (for deployment):
+VITE_API_BASE_URL=https://your-backend-domain.com
 
 Windows:
 
